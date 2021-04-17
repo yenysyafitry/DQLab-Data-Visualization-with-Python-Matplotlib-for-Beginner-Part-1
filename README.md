@@ -1,4 +1,4 @@
-###Pengenalan Dataset 
+### Pengenalan Dataset 
 ```plantuml
 import pandas as pd
 dataset = pd.read_csv('https://dqlab-dataset.s3-ap-southeast-1.amazonaws.com/retail_raw_reduced.csv')
@@ -16,7 +16,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Penambahan Kolom Order Month pada Dataset 
+### Penambahan Kolom Order Month pada Dataset 
 ```plantuml
 import datetime
 dataset['order_month'] = dataset['order_date'].apply(lambda x: datetime.datetime.strptime(x, "%Y-%m-%d").strftime('%Y-%m'))
@@ -32,7 +32,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Penambahan Kolom GMV pada Dataset 
+### Penambahan Kolom GMV pada Dataset 
 ```plantuml
 dataset['gmv'] = dataset['item_price'] * dataset['quantity']
 print('Ukuran dataset: %d baris dan %d kolom\n' % dataset.shape)
@@ -49,7 +49,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Membuat Data Agregat 
+### Membuat Data Agregat 
 ```plantuml
 
 monthly_amount = dataset.groupby('order_month')['gmv'].sum().reset_index()
@@ -65,7 +65,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Plot Pertama: Membuat Line Chart Trend Pertumbuhan GMV 
+### Plot Pertama: Membuat Line Chart Trend Pertumbuhan GMV 
 
 ```plantuml
 import matplotlib.pyplot as plt
@@ -82,7 +82,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Cara Alternatif: Fungsi .plot() pada pandas Dataframe 
+### Cara Alternatif: Fungsi .plot() pada pandas Dataframe 
 ```plantuml
 import matplotlib.pyplot as plt
 dataset.groupby(['order_month'])['gmv'].sum().plot()
@@ -98,7 +98,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Mengubah Figure Size 
+### Mengubah Figure Size 
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15,5))
@@ -115,7 +115,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Menambahkan Title and Axis Labels 
+### Menambahkan Title and Axis Labels 
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15, 5))
@@ -135,7 +135,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Kustomisasi Title and Axis Labels 
+### Kustomisasi Title and Axis Labels 
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15, 5))
@@ -155,7 +155,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Kustomisasi Line dan Point 
+### Kustomisasi Line dan Point 
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15, 5))
@@ -175,7 +175,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Kustomisasi Grid 
+### Kustomisasi Grid 
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15, 5))
@@ -196,7 +196,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Kustomisasi Axis Ticks 
+### Kustomisasi Axis Ticks 
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15, 5))
@@ -219,7 +219,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Menentukan Batas Minimum dan Maksimum Axis Ticks 
+### Menentukan Batas Minimum dan Maksimum Axis Ticks 
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15, 5))
@@ -243,7 +243,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Menambahkan Informasi Pada Plot 
+### Menambahkan Informasi Pada Plot 
 ```plantuml
 import matplotlib.pyplot as plt
 fig = plt.figure(figsize=(15, 5))
@@ -268,7 +268,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Menyimpan Hasil Plot Menjadi File Image 
+### Menyimpan Hasil Plot Menjadi File Image 
 ```plantuml
 import matplotlib.pyplot as plt
 fig = plt.figure(figsize=(15, 5))
@@ -294,7 +294,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Pengaturan Parameter untuk Menyimpan Gambar 
+### Pengaturan Parameter untuk Menyimpan Gambar 
 ```plantuml
 import matplotlib.pyplot as plt
 fig = plt.figure(figsize=(15, 5))
@@ -320,7 +320,7 @@ Senja, Usia: 28, Pendapatan 12500000
 
 ----
 
-###Studi Kasus dari Senja: Daily number of customers on Desember 
+### Studi Kasus dari Senja: Daily number of customers on Desember 
 ```plantuml
 #Import library yang dibutuhkan
 import datetime
