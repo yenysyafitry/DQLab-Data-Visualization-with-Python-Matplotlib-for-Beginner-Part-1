@@ -11,12 +11,14 @@ print(dataset.head())
 Ukuran dataset: 5000 baris dan 9 kolom
 
 Lima data teratas:
-   order_id  order_date  customer_id  ...    brand quantity item_price
-0   1703458  2019-10-17        14004  ...  BRAND_J       10     740000
-1   1706815  2019-10-24        17220  ...  BRAND_R        2     604000
-2   1710718  2019-11-03        16518  ...  BRAND_C        8    1045000
-3   1683592  2019-08-19        16364  ...  BRAND_A        4     205000
-4   1702573  2019-10-16        15696  ...  BRAND_R        2    4475000
+
+|    | order_id| order_date|  customer_id | ...  |brand  |quantity |item_price|
+|:--:|   :--:  |     :--:  |      :--:    | :--: | :--:  |   :--:  |:--:|
+|   0| 1703458 | 2019-10-17|     14004    | ...  |BRAND_J|10       |740000|
+|   1| 1706815 | 2019-10-24|     17220    | ...  |BRAND_R|2        |604000|
+|   2| 1710718 | 2019-11-03|     16518    | ...  |BRAND_C| 8       |1045000|
+|   3| 1683592 | 2019-08-19|     16364    | ...  |BRAND_A| 4       |205000|
+|   4| 1702573 | 2019-10-16|     15696    | ...  |BRAND_R|   2     | 4475000|
 
 [5 rows x 9 columns]
 
