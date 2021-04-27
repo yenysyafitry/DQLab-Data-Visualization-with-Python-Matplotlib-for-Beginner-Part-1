@@ -1,4 +1,5 @@
 ### Pengenalan Dataset 
+
 ```plantuml
 import pandas as pd
 dataset = pd.read_csv('https://dqlab-dataset.s3-ap-southeast-1.amazonaws.com/retail_raw_reduced.csv')
@@ -6,11 +7,11 @@ print('Ukuran dataset: %d baris dan %d kolom\n' % dataset.shape)
 print('Lima data teratas:')
 print(dataset.head())
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
-Ukuran dataset: 5000 baris dan 9 kolom
-
-Lima data teratas:
+Ukuran dataset: 5000 baris dan 9 kolom</br>
+Lima data teratas:</br>
 
 |    | order_id| order_date|  customer_id | ...  |brand  |quantity |item_price|
 |:--:|   :--:  |     :--:  |      :--:    | :--: | :--:  |   :--:  |:--:|
@@ -20,17 +21,17 @@ Lima data teratas:
 |   3| 1683592 | 2019-08-19|     16364    | ...  |BRAND_A| 4       |205000|
 |   4| 1702573 | 2019-10-16|     15696    | ...  |BRAND_R|   2     | 4475000|
 
-[5 rows x 9 columns]
+[5 rows x 9 columns]</br>
 
-</br>Berikut penjelasan nya :
-order_id : ID dari order/transaksi, 1 transaksi bisa terdiri dari beberapa produk, tetapi hanya dilakukan oleh 1 customer
-order_date : tanggal terjadinya transaksi
-customer_id : ID dari pembeli, bisa jadi dalam satu hari, 1 customer melakukan transaksi beberapa kali
-city : kota tempat toko terjadinya transaksi
-province : provinsi (berdasarkan city)
-product_id : ID dari suatu product yang dibeli
-brand : brand/merk dari product. Suatu product yang sama pasti memiliki brand yang sama
-quantity : Kuantitas / banyaknya product yang dibeli
+</br>Berikut penjelasan nya :</br>
+order_id : ID dari order/transaksi, 1 transaksi bisa terdiri dari beberapa produk, tetapi hanya dilakukan oleh 1 customer</br>
+order_date : tanggal terjadinya transaksi</br>
+customer_id : ID dari pembeli, bisa jadi dalam satu hari, 1 customer melakukan transaksi beberapa kali</br>
+city : kota tempat toko terjadinya transaksi</br>
+province : provinsi (berdasarkan city)</br>
+product_id : ID dari suatu product yang dibeli</br>
+brand : brand/merk dari product. Suatu product yang sama pasti memiliki brand yang sama</br>
+quantity : Kuantitas / banyaknya product yang dibeli</br>
 item_price : Harga dari 1 product (dalam Rupiah). Suatu product yang sama, bisa jadi memiliki harga yang berbeda saat dibeli
 </details>
 </br>
@@ -39,19 +40,23 @@ item_price : Harga dari 1 product (dalam Rupiah). Suatu product yang sama, bisa 
 ----
 
 ### Penambahan Kolom Order Month pada Dataset 
+
 ```plantuml
 import datetime
 dataset['order_month'] = dataset['order_date'].apply(lambda x:datetime.datetime.strptime(x,"%Y-%m-%d").strftime('%Y-%m'))
 print(dataset.head())
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
-order_id  order_date  customer_id  ... quantity item_price order_month
-0   1703458  2019-10-17        14004  ...       10     740000     2019-10
-1   1706815  2019-10-24        17220  ...        2     604000     2019-10
-2   1710718  2019-11-03        16518  ...        8    1045000     2019-11
-3   1683592  2019-08-19        16364  ...        4     205000     2019-08
-4   1702573  2019-10-16        15696  ...        2    4475000     2019-10
+   
+|    |order_id | order_date | customer_id  |...   |quantity| item_price| order_month |
+|:--:|   :--:  |     :--:   |      :--:    | :--: | :--:   |   :--:    |    :--:     |
+|  0 |  1703458|  2019-10-17|        14004 | ...  |     10  |   740000 |    2019-10  |
+|  1 |  1706815|  2019-10-24|        17220 | ...  |      2  |   604000 |    2019-10  |
+|  2 |  1710718|  2019-11-03|        16518 | ...  |      8  |  1045000 |    2019-11  |
+|  3 |  1683592|  2019-08-19|        16364 | ...  |      4  |   205000 |    2019-08  |
+|  4 |  1702573|  2019-10-16|        15696 | ...  |      2  |  4475000 |    2019-10  |
 
 [5 rows x 10 columns]
 </details>
@@ -61,23 +66,27 @@ order_id  order_date  customer_id  ... quantity item_price order_month
 ----
 
 ### Penambahan Kolom GMV pada Dataset 
+
 ```plantuml
 dataset['gmv'] = dataset['item_price'] * dataset['quantity']
 print('Ukuran dataset: %d baris dan %d kolom\n' % dataset.shape)
 print('Lima data teratas:')
 print(dataset.head())
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
-ukuran dataset: 5000 baris dan 11 kolom
+ukuran dataset: 5000 baris dan 11 kolom</br>
 
-Lima data teratas:
-   order_id  order_date  customer_id  ... item_price order_month      gmv
-0   1703458  2019-10-17        14004  ...     740000     2019-10  7400000
-1   1706815  2019-10-24        17220  ...     604000     2019-10  1208000
-2   1710718  2019-11-03        16518  ...    1045000     2019-11  8360000
-3   1683592  2019-08-19        16364  ...     205000     2019-08   820000
-4   1702573  2019-10-16        15696  ...    4475000     2019-10  8950000
+Lima data teratas:</br>
+
+|    |order_id | order_date | customer_id  | ...  |item_price |order_month|      gmv |
+|:--:|   :--:  |     :--:   |      :--:    | :--: | :--:      |   :--:    |    :--:  |   
+|  0 |  1703458|  2019-10-17|        14004 | ...  |   740000  |   2019-10 | 7400000  |
+|  1 |  1706815|  2019-10-24|        17220 | ...  |   604000  |   2019-10 | 1208000  |
+|  2 |  1710718|  2019-11-03|        16518 | ...  |  1045000  |   2019-11 | 8360000  |
+|  3 |  1683592|  2019-08-19|        16364 | ...  |   205000  |   2019-08 |  820000  |
+|  4 |  1702573|  2019-10-16|        15696 | ...  |  4475000  |   2019-10 | 8950000  |
 
 [5 rows x 11 columns]
 </details>
@@ -87,20 +96,25 @@ Lima data teratas:
 ----
 
 ### Membuat Data Agregat 
+
 ```plantuml
 
 monthly_amount = dataset.groupby('order_month')['gmv'].sum().reset_index()
 print(monthly_amount)
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
-  order_month         gmv
-0     2019-07  3524041000
-1     2019-08  4452923000
-2     2019-09  3947002000
-3     2019-10  6719937000
-4     2019-11  6182229000
-5     2019-12  8148235000	
+   
+|    |order_month|   gmv    | 
+|:--:|    :--:   |  :--:    | 
+|0   |  2019-07  |3524041000|
+|1   |  2019-08  |4452923000|
+|2   |  2019-09  |3947002000|
+|3   |  2019-10  |6719937000|
+|4   |  2019-11  |6182229000|
+|5   |  2019-12  |8148235000|	
+
 </details>
 </br>
 <a href="https://academy.dqlab.id/main/livecode/164/313/1453">Link materi : academy.dqlab.id/main/livecode/164/313/1453</a>
@@ -114,6 +128,7 @@ import matplotlib.pyplot as plt
 plt.plot(monthly_amount['order_month'], monthly_amount['gmv'])
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download.png">
@@ -124,11 +139,13 @@ plt.show()
 ----
 
 ### Cara Alternatif: Fungsi .plot() pada pandas Dataframe 
+
 ```plantuml
 import matplotlib.pyplot as plt
 dataset.groupby(['order_month'])['gmv'].sum().plot()
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download (1).png">
@@ -139,12 +156,14 @@ plt.show()
 ----
 
 ### Mengubah Figure Size 
+
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15,5))
 dataset.groupby(['order_month'])['gmv'].sum().plot()
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download (2).png">
@@ -156,6 +175,7 @@ plt.show()
 ----
 
 ### Menambahkan Title and Axis Labels 
+
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15, 5))
@@ -165,6 +185,7 @@ plt.xlabel('Order Month')
 plt.ylabel('Total GMV')
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download (3).png">
@@ -175,6 +196,7 @@ plt.show()
 ----
 
 ### Kustomisasi Title and Axis Labels 
+
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15, 5))
@@ -184,6 +206,7 @@ plt.xlabel('Order Month', fontsize=15)
 plt.ylabel('Total Amount', fontsize=15)
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download (4).png">
@@ -194,6 +217,7 @@ plt.show()
 ----
 
 ### Kustomisasi Line dan Point 
+
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15, 5))
@@ -203,6 +227,7 @@ plt.xlabel('Order Month', fontsize=15)
 plt.ylabel('Total Amount', fontsize=15)
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download (5).png">
@@ -213,6 +238,7 @@ plt.show()
 ----
 
 ### Kustomisasi Grid 
+
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15, 5))
@@ -223,6 +249,7 @@ plt.ylabel('Total Amount', fontsize=15)
 plt.grid(color='darkgray', linestyle=':', linewidth=0.5)
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download (6).png">
@@ -233,6 +260,7 @@ plt.show()
 ----
 
 ### Kustomisasi Axis Ticks 
+
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15, 5))
@@ -245,6 +273,7 @@ labels, locations = plt.yticks()
 plt.yticks(labels, (labels/1000000000).astype(int))
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download (7).png">
@@ -255,6 +284,7 @@ plt.show()
 ----
 
 ### Menentukan Batas Minimum dan Maksimum Axis Ticks 
+
 ```plantuml
 import matplotlib.pyplot as plt
 plt.figure(figsize=(15, 5))
@@ -268,6 +298,7 @@ labels, locations = plt.yticks()
 plt.yticks(labels, (labels/1000000000).astype(int))
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download (8).png">
@@ -278,6 +309,7 @@ plt.show()
 ----
 
 ### Menambahkan Informasi Pada Plot 
+
 ```plantuml
 import matplotlib.pyplot as plt
 fig = plt.figure(figsize=(15, 5))
@@ -292,6 +324,7 @@ plt.yticks(labels, (labels/1000000000).astype(int))
 plt.text(0.45,0.72, 'The GMV increased significantly on October 2019', transform=fig.transFigure,color='red')
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download (9).png">
@@ -302,6 +335,7 @@ plt.show()
 ----
 
 ### Menyimpan Hasil Plot Menjadi File Image 
+
 ```plantuml
 import matplotlib.pyplot as plt
 fig = plt.figure(figsize=(15, 5))
@@ -317,6 +351,7 @@ plt.text(0.45,0.72, 'The GMV increased significantly on October 2019', transform
 plt.savefig('monthly_gmv.png')
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download (10).png">
@@ -327,13 +362,12 @@ plt.show()
 ----
 
 ### Pengaturan Parameter untuk Menyimpan Gambar 
-Ada berbagai parameter yang bisa diatur saat menyimpan gambar, antara lain:
-
-dpi: Resolusi gambar (dots per inch). 
-quality: Kualitas gambar (hanya berlaku jika formatnya jpg atau jpeg), bisa diisi nilai 1 (paling buruk) hingga 95 (paling bagus).
-facecolor: Memberikan warna bagian depan figure, di luar area plot 
-edgecolor: Memberikan warna pinggiran gambar
-transparent: Jika nilainya True, maka gambarnya jadi transparan (jika filenya png)
+Ada berbagai parameter yang bisa diatur saat menyimpan gambar, antara lain: <ol align="justify"><li>
+dpi: Resolusi gambar (dots per inch). </li>
+<li>quality: Kualitas gambar (hanya berlaku jika formatnya jpg atau jpeg), bisa diisi nilai 1 (paling buruk) hingga 95 (paling bagus).</li>
+<li>facecolor: Memberikan warna bagian depan figure, di luar area plot </li>
+<li>edgecolor: Memberikan warna pinggiran gambar</li>
+<li>transparent: Jika nilainya True, maka gambarnya jadi transparan (jika filenya png)</li></ol>
 
 ```plantuml
 import matplotlib.pyplot as plt
@@ -350,6 +384,7 @@ plt.text(0.45,0.72, 'The GMV increased significantly on October 2019', transform
 plt.savefig('monthly_gmv.png', quality=95)
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download (11).png">
@@ -360,6 +395,7 @@ plt.show()
 ----
 
 ### Studi Kasus dari Senja: Daily number of customers on Desember 
+
 ```plantuml
 #Import library yang dibutuhkan
 import datetime
@@ -381,6 +417,7 @@ plt.grid(color='darkgray', linestyle=':', linewidth=0.5)
 plt.ylim(ymin=0)
 plt.show()
 ```
+
 <details>
 <summary markdown="span">Output :</summary>
 <img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/download (12).png">	
@@ -389,3 +426,8 @@ plt.show()
 <a href="https://academy.dqlab.id/main/livecode/164/316/1477">Link materi : academy.dqlab.id/main/livecode/164/316/1477</a>
 
 ----
+
+
+</br></br>
+
+<p align="center"><b>E-Sertifikat </b></br><img src="https://github.com/yenysyafitry/DQLab-Data-Visualization-with-Python-Matplotlib-for-Beginner-Part-1/blob/main/e-sertifikat.jpg"></p>
